@@ -1,0 +1,48 @@
+$primary-color: #ccc;
+
+/* Criando uma variável para definir a cor da border */
+.box {
+    border: 1px solid $primary-color;
+}
+
+/* descobre o que deves usar para gerar o css */
+.foo {
+    background: orange;
+    p {
+        color: blue;
+        font-size: 14px;
+        font-weight: bold;
+    }
+}
+
+/* Usa uma divisão para definir o tamanho */
+html {
+    font-size: 1/2*1em;
+}
+
+/* descobre o que deves usar para gerar o css */
+%default {
+    border: 10px solid gray;
+    padding: 10px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0);
+}
+
+.user-dialog-box {
+    @extend %default;
+}
+
+.alert-winning-user {
+    @extend %default;
+    border-color: green;
+}
+
+/* cria um mixin dialog-box() com um argumento para definir a cor da border */
+@mixin dialog-box($color){
+    border: 10px solid $color;
+    padding: 10px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0);
+}
+
+.alert-winning-user {
+    @include dialog-box(green);
+}

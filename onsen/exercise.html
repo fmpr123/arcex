@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+</head>
+
+<body>
+    <ons-page>
+        <ons-toolbar>
+            <div class="center">Home</div>
+        </ons-toolbar>
+
+        <ons-tabbar swipeable position="auto">
+            <ons-tab page="tab1.html" label="Home" icon="md-settings" active-icon="md-face">
+            </ons-tab>
+            <ons-tab page="tab2.html" label="Adicionar" icon="md-settings" active-icon="md-face">
+            </ons-tab>
+            <ons-tab page="tab3.html" label="Contactar" icon="md-settings" active-icon="md-face">
+            </ons-tab>
+        </ons-tabbar>
+    </ons-page>
+
+    <template id="tab1.html">
+        <ons-page id="Tab1">
+            <p style="text-align: center;">
+                <div>
+                    <ons-list id="lista">
+                        <ons-list-header>Lista</ons-list-header>
+                        <ons-list-item>Alberto</ons-list-item>
+                    </ons-list>
+                </div>
+
+                <ons-fab position="bottom right">
+                    <ons-icon onclick="move()" icon="md-plus"></ons-icon>
+                </ons-fab>
+            </p>
+        </ons-page>
+    </template>
+
+    <template id="tab2.html">
+        <ons-page id="Tab2">
+            <p style="text-align: center;">
+                <div style="text-align: center; margin-top: 30px;">
+                    <p>
+                        <ons-input id="name" modifier="underbar" float></ons-input>
+                    </p>
+                    <p style="margin-top: 30px;">
+                        <ons-button onclick="verification()">Adicionar</ons-button>
+                    </p>
+                </div>
+            </p>
+        </ons-page>
+    </template>
+
+    <template id="tab3.html">
+        <ons-page id="Tab3">
+            <p style="text-align: center;">
+                This is the third page.
+            </p>
+        </ons-page>
+    </template>
+</body>
+<script>
+    document.addEventListener('prechange', function (event) {
+        document.querySelector('ons-toolbar .center')
+            .innerHTML = event.tabItem.getAttribute('label');
+    });
+    var verification = function () {
+        var nome = document.getElementById("name").value;
+        if (nome === "") {
+            ons.notification.toast('ERROR');
+        } else {
+            ons.notification.toast('Sucesso');
+            node = document.createElement("ons-list-item");
+            var textnode = document.getElementById("name");
+            node.appendChild(textnode);
+            document.getElementById("lista").appendChild(node);
+        }
+    };
+    var move = function () {
+        
+    };
+
+</script>
+
+</html>

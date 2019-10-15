@@ -13,7 +13,7 @@
             <div class="center">Home</div>
         </ons-toolbar>
 
-        <ons-tabbar swipeable position="auto">
+        <ons-tabbar swipeable position="top">
             <ons-tab page="tab1.html" label="Home" icon="md-settings" active-icon="md-face">
             </ons-tab>
             <ons-tab page="tab2.html" label="Adicionar" icon="md-settings" active-icon="md-face">
@@ -29,12 +29,12 @@
                 <div>
                     <ons-list id="lista">
                         <ons-list-header>Lista</ons-list-header>
-                        <ons-list-item>Alberto</ons-list-item>
+                        <ons-list-item tappable>Alberto</ons-list-item>
                     </ons-list>
                 </div>
 
                 <ons-fab position="bottom right">
-                    <ons-icon onclick="move()" icon="md-plus"></ons-icon>
+                    <ons-icon id="fab" icon="md-plus"></ons-icon>
                 </ons-fab>
             </p>
         </ons-page>
@@ -71,19 +71,22 @@
     var verification = function () {
         var nome = document.getElementById("name").value;
         if (nome === "") {
-            ons.notification.toast('ERROR');
+            ons.notification.alert('ERROR');
         } else {
-            ons.notification.toast('Sucesso');
-            node = document.createElement("ons-list-item");
-            var textnode = document.getElementById("name");
-            node.appendChild(textnode);
-            document.getElementById("lista").appendChild(node);
+            ons.notification.toast('Sucesso',{timeout:1000,animation:"lift"});
+            document.getElementById("name").value="";
+            var node = document.createElement("ons-list-item");
+            node.setAttribute("tappable");
+            node.innerHTML=nome;
+            document.querySelector("ons-list").appendChild(node);
         }
     };
-    var move = function () {
-        
-    };
-
+    ons.ready(function() {
+      fabB=document.getElementById("fab");
+      fabB.onclick=function(){
+          document.querySelector("ons-tabbar").setActiveTab(1);
+      };
+    });
 </script>
 
 </html>

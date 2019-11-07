@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>ACR</title>
+    <title>@yield('title', 'ACR (default)')</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
 
@@ -13,27 +13,18 @@
 
 <div style="height:100px;" class="topnav">
     <nav>
-      <a href="/" class="dropbtn">Index</a>
-      <a href="/contact" style="margin-top:10px;" class="dropbtn">Contactos</a>
-      <a href="/about" style="margin-top:100px;" class="dropbtn">Sobre</a>
+    <a href="/" class="dropbtn">Index</a>
+    <a href="/contact" style="margin-top:10px;" class="dropbtn">Contactos</a>
+    <a href="/about" style="margin-top:100px;" class="dropbtn">Sobre</a>
+
     </nav>
 
 </div>
 
+
     <div class="container">
-        @yield('container')
+        @yield('content')
     </div>
-
-    {{ $text }}
-    <br><br>
-    {{ $title }}
-    <br><br>
-    <ul>
-        @foreach ($tasks as $task)
-            <li>{{$task}}</li>
-        @endforeach
-    </ul>
-
 </body>
 </html>
 

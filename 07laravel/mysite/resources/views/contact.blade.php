@@ -1,34 +1,7 @@
-<!doctype html>
-<html>
-<head>
-    <title>ACR</title>
+@extends('layout')
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+@section('title', 'Contact Us') <!-- por ser apenas 1 argumento, não um bloco -->
 
-</head>
-
-<body style="padding: 20px;">
-
-<div  style="padding-bottom:10%;">
-
-<div style="height:100px;" class="topnav">
-    <nav>
-      <a href="/" class="dropbtn">Index</a>
-      <a href="/contact" style="margin-top:10px;" class="dropbtn">Contactos</a>
-      <a href="/about" style="margin-top:100px;" class="dropbtn">Sobre</a>
-    </nav>
-
-</div>
-
-    <div class="container">
-        @yield('container')
-    </div>
-
-    @section('content')
-        <h1>Contact Form</h1>
-    @endsection
-
-</body>
-</html>
-
-
+@section('content')
+    <h1>Contact Form</h1>
+@endsection

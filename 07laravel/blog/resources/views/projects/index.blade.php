@@ -8,12 +8,13 @@
     <title>Document</title>
 </head>
 <body>
+
     <h1>Projects</h1>
     <ul>
         @foreach ($projects as $project)
             <li>{{ $project->title }}</li>
         @endforeach
     </ul>
-    <button type="submit" onclick="window.location='./projects/create'">Add Project</button>
+
 </body>
 </html>

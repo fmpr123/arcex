@@ -11,8 +11,8 @@
     <h1>Create project</h1>
     <form method="POST" action="/projects">
         {{ csrf_field() }}
-        <input type="text" name="title" >
-        <textarea name="description" ></textarea>
+        <input type="text" name="title" class="input {{ $errors->has('title') ? 'is-danger' : '' }}" placeholder="Project title" value="{{ old('title') }}" required>
+        <textarea name="description" required></textarea>
         <button type="submit">Create Project</button>
     </form>
 </body>

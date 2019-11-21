@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Project;
 
 class ProjectsController extends Controller
@@ -11,7 +10,6 @@ class ProjectsController extends Controller
     {
         $projects = Project::all();
         return view('projects.index', ['projects' => $projects]);
-        //return $projects; retorna json com todos os dados
     }
 
     public function create()
@@ -22,11 +20,12 @@ class ProjectsController extends Controller
 
     public function store()
     {
-        Project::create([
-            'title' => request('title'),
-            'description' => request('description')
-            ]);
-            return redirect('/projects');
+        $validated = request()->validate([
+            'title' => ['required', 'min:2', 'max:255'],
+            'description' => 'required'
+        ]);
+        Project::create($validated);
+        return redirect('/projects');
     }
     
     public function edit($id)
@@ -42,9 +41,8 @@ class ProjectsController extends Controller
         $project->description=request('description');
         $project->save();
         return redirect('/projects');
-
     }
-
+    
     public function destroy($id)
     {
         $project = Project::find($id);
@@ -57,11 +55,20 @@ class ProjectsController extends Controller
     public function showAlt(Project $project)
     {
         return view('projects.show', compact('project')); 
-        #['project' => $project];
     }
 
     public function show($id){
         $project = Project::findOrFail($id);
+        return view('projects.show',compact('project'));
+    }
+
+    public function first(){
+        $project = Project::all()->first();
+        return view('projects.show',compact('project'));
+    }
+
+    public function last(){
+        $project = Project::all()->last();
         return view('projects.show',compact('project'));
     }
 }

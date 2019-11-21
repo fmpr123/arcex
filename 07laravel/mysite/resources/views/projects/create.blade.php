@@ -1,19 +1,30 @@
 @extends('layout')
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=form, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Create project</h1>
+
+@section('content')
+    <h1>Create a new Project</h1>
+
     <form method="POST" action="/projects">
         {{ csrf_field() }}
-        <input type="text" name="title" >
-        <textarea name="description" ></textarea>
-        <button type="submit">Create Project</button>
+        <div>
+        <input type="text" name="title" class="input {{ $errors->has('title') ? 'is-danger' : '' }}" placeholder="Project title" value="{{ old('title') }}" required>
+        </div>
+
+        <div>
+            <textarea name="description" class="input" placeholder="Project description" required></textarea>
+        </div>
+
+        <div>
+            <button type="submit">Create Project</button>
+        </div>
+
+        @if ($errors->any())
+        <div class="notification is-danger">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
     </form>
-</body>
-</html>
+@endsection

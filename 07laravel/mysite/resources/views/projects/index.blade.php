@@ -14,6 +14,5 @@
             <li>{{ $project->title }}</li>
         @endforeach
     </ul>
-    <button type="submit" onclick="window.location='./projects/create'">Add Project</button>
 </body>
 </html>

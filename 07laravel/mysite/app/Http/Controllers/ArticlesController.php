@@ -43,7 +43,7 @@ class ArticlesController extends Controller
         $article = Article::findOrFail($id);
         return view('articles.edit', compact('article'));
     }
-
+    
     public function update($id)
     {
         $article = Article::find($id);

@@ -20,6 +20,10 @@ Route::get('/projects/first','ProjectsController@first');
 Route::get('/projects/last','ProjectsController@last');
 
 
+
+Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');
+Route::patch('/tasks/{task}', 'ProjectTasksController@update');
+
 Route::resource('projects','ProjectsController');
 Route::resource('posts','PostsController');
 
@@ -36,3 +40,6 @@ Route::resource('articles','ArticlesController');
 // Route::get('/projects/{id}/edit','ProjectsController@edit');
 // Route::patch('/projects/{id}','ProjectsController@update');
 // Route::delete('/projects/{id}','ProjectsController@destroy');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -27,5 +27,4 @@ Route::patch('/projects/{project}', 'ProjectsController@update');
 Route::delete('/projects/{project}', 'ProjectsController@destroy');
 */
 
-
 Route::resource('posts','PostsController');

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/onsenui/css/onsen-css-components.min.css"
+    />
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <!--script src="https://unpkg.com/jquery/dist/jquery.min.js"></script-->
+  </head>
+  <body>
+    <ons-navigator id="myNavigator">
+      <ons-page>
+        <ons-toolbar>
+          <div class="center">Trabalho</div>
+        </ons-toolbar>
+
+        <ons-tabbar position="auto" swipeable>
+          <ons-tab icon="ion-md-home" label="home" page="home.html"></ons-tab>
+          <ons-tab
+            icon="ion-ios-cog"
+            label="Settings"
+            page="./settings.html"
+          ></ons-tab>
+        </ons-tabbar>
+      </ons-page>
+    </ons-navigator>
+
+    <template id="home.html">
+      <ons-page>
+        <ons-pull-hook id="pull-hook">
+          Pull to refresh
+        </ons-pull-hook>
+        <h2>Fruta</h2>
+        <ons-list-title>Lista de fruta</ons-list-title>
+        <ons-list>
+          <ons-list-item onclick="customPush2(event)">Banana</ons-list-item>
+          <ons-list-item onclick="customPush2(event)">Uva</ons-list-item>
+          <ons-list-item onclick="customPush2(event)">Laranja</ons-list-item>
+        </ons-list>
+      </ons-page>
+    </template>
+
+    <template id="pageNav2.html">
+      <ons-page id="pageNav2">
+        <ons-toolbar>
+          <div class="left">
+            <ons-back-button>Back</ons-back-button>
+          </div>
+        </ons-toolbar>
+
+        <ons-card>
+          <div class="title"></div>
+          <img
+            src="https://t3.ftcdn.net/jpg/00/92/53/56/240_F_92535664_IvFsQeHjBzfE6sD4VHdO8u5OHUSc6yHF.jpg"
+            alt="Exemplo"
+            style="width: 100%"
+          />
+
+          <div class="content">
+            <h1>
+              Price: 1000.00$
+            </h1>
+            <div>
+              <h2>
+                Details:
+              </h2>
+              <p>
+                Is very good, yes.
+              </p>
+            </div>
+          </div>
+          <p style="text-align: center">
+            <ons-button onclick="app.showFromTemplate()">Actions</ons-button>
+          </p>
+          <ons-gesture-detector>
+            <div
+              id="detect-area"
+              style="display: flex; width: 100%; height: 100px; margin: auto; background-color:lightblue; text-align: center; vertical-align: middle;"
+            >
+            <p style="margin: auto; text-align: center">
+              Swipe Area
+            </p>
+            </div>
+          </ons-gesture-detector>
+          <ons-speed-dial position="bottom right" direction="up">
+              <ons-fab>
+                <ons-icon icon="md-share"></ons-icon>
+              </ons-fab>
+              <ons-speed-dial-item onclick="shareButton()">
+                <ons-icon icon="md-twitter"></ons-icon>
+              </ons-speed-dial-item>
+              <ons-speed-dial-item onclick="shareButton()">
+                <ons-icon icon="md-facebook"></ons-icon>
+              </ons-speed-dial-item>
+            </ons-speed-dial>
+        </ons-card>
+      </ons-page>
+    </template>
+
+    <template id="action-sheet.html">
+      <ons-action-sheet id="sheet" cancelable title="Actions">
+        <ons-action-sheet-button
+          icon="md-square-o"
+          onclick="app.hideFromTemplate()"
+          >Comprar</ons-action-sheet-button
+        >
+        <ons-action-sheet-button
+          icon="md-square-o"
+          onclick="app.hideFromTemplate()"
+          >Comentar</ons-action-sheet-button
+        >
+        <ons-action-sheet-button
+          icon="md-square-o"
+          onclick="app.hideFromTemplate()"
+          >Ajuda</ons-action-sheet-button
+        >
+        <ons-action-sheet-button
+          icon="md-close"
+          onclick="app.hideFromTemplate()"
+          >Cancel</ons-action-sheet-button
+        >
+      </ons-action-sheet>
+    </template>
+    <script src="app.js"></script>
+  </body>
+  <script>
+    document.addEventListener("swiperight", function(event) {
+      if (event.target.matches("#detect-area")) {
+        myNavigator.popPage();
+      }
+    });
+
+    var shareButton = function() {
+      ons.notification.toast("Partilhado com sucesso!", {timeout : 1000, animation: 'lift'});
+      document.querySelector('ons-speed-dial').toggleItems();
+    };
+
+  </script>
+</html>

@@ -1,0 +1,36 @@
+<body>
+  <ons-page>
+    <h2>Settings</h2>
+    <ons-list>
+      <ons-list-header>Settings</ons-list-header>
+      <ons-list-item>
+        <div class="center">
+          Kamehame
+        </div>
+        <div class="right">
+          <ons-switch id="switch-1"></ons-switch>
+        </div>
+      </ons-list-item>
+      <ons-list-item>
+        <div class="center">
+          HAAAAAAA!!!!
+        </div>
+        <div class="right">
+          <ons-switch id="switch-2" disabled="true"></ons-switch>
+        </div>
+      </ons-list-item>
+    </ons-list>
+    <script>
+      document
+        .getElementById("switch-1")
+        .addEventListener("change", function(event) {
+          if (event.value) {
+            document.getElementById("switch-2").disabled = false;
+          } else { 
+            document.getElementById("switch-2").checked = false;
+            document.getElementById("switch-2").disabled = true;
+          }
+        });
+    </script>
+  </ons-page>
+</body>
